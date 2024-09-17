@@ -32,3 +32,8 @@ html_theme = 'furo'
 html_static_path = ['_static']
 
 html_title = html_short_title = project
+html_theme_options = {
+    'source_repository': 'https://github.com/mange-ifrn/mange-estudantes',
+    'source_branch': 'main/docs'
+}
+
