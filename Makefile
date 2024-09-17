@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 PYTHON       = python3
-VENVDIR      = ./.venv
+VENVDIR      = ./venv
 SPHINXBUILD  = $(VENVDIR)/bin/sphinx-build
 #SPHINXOPTS   = --fail-on-warning --keep-going
 SPHINXOPTS   = 
@@ -63,7 +63,7 @@ ensure-venv:
 
 .PHONY: htmlview
 htmlview: html
-	$(PYTHON) -c "import os, webbrowser; webbrowser.open('file://' + os.path.realpath('_build/html/index.html'))"
+	$(PYTHON) -c "import os, webbrowser; webbrowser.open('file://' + os.path.realpath('docs/_build/html/index.html'))"
 
 .PHONY: htmllive
 htmllive: SPHINXBUILD = $(VENVDIR)/bin/sphinx-autobuild
