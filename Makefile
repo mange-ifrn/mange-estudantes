@@ -65,12 +65,19 @@ ensure-venv:
 htmlview: html
 	$(PYTHON) -c "import os, webbrowser; webbrowser.open('file://' + os.path.realpath('docs/_build/html/index.html'))"
 
+# .PHONY: htmllive
+# htmllive: SPHINXBUILD = $(VENVDIR)/bin/sphinx-autobuild
+# # Arbitrarily selected ephemeral port between 49152–65535
+# # to avoid conflicts with other processes:
+# htmllive: SPHINXOPTS = --re-ignore="/\.idea/|/venv/" --open-browser --delay 0 --port 0
+# htmllive: html
+
 .PHONY: htmllive
 htmllive: SPHINXBUILD = $(VENVDIR)/bin/sphinx-autobuild
-# Arbitrarily selected ephemeral port between 49152–65535
-# to avoid conflicts with other processes:
-htmllive: SPHINXOPTS = --re-ignore="/\.idea/|/venv/" --open-browser --delay 0 --port 0
-htmllive: html
+htmllive: SPHINXOPTS = --ignore "*.swp" --open-browser --port 8000
+htmllive:
+	$(SPHINXBUILD) $(SPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)/html"
+
 
 .PHONY: check
 check: ensure-venv
